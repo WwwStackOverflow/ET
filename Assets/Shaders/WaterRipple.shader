@@ -54,17 +54,20 @@ Shader "Custom/WaterRipple"
             v2f vert (appdata v)
             {
                 v2f o;
-                o.worldPos = mul(unity_ObjectToWorld, v.vertex);
                 
-                // Create ripple effect on vertex position
-                float dist = length(o.worldPos.xz);
+                // Calculate world position for ripple effect
+                float4 worldPos = mul(unity_ObjectToWorld, v.vertex);
+                float dist = length(worldPos.xz);
                 float ripple = sin(dist * _RippleFrequency - _Time.y * _RippleSpeed) * _RippleAmplitude;
                 
                 // Add wave effect
                 float wave = sin(v.vertex.x * 3.0 + _Time.y * _WaveSpeed) * _WaveAmplitude;
                 
+                // Apply displacement to vertex
                 v.vertex.y += ripple + wave;
                 
+                // Calculate final world position after displacement
+                o.worldPos = mul(unity_ObjectToWorld, v.vertex);
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 return o;
