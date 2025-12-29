@@ -18,6 +18,7 @@ This is a Unity shader that creates a beautiful water ripple effect with animate
 
 - `Assets/Shaders/WaterRipple.shader` - The water ripple shader (水波纹着色器)
 - `Assets/Materials/WaterRippleMaterial.mat` - Example material using the shader (使用着色器的示例材质)
+- `Assets/Materials/WaterRipplePlane.prefab` - Ready-to-use water plane prefab (可直接使用的水面预制体)
 
 ## Shader Properties / 着色器属性
 
@@ -40,6 +41,18 @@ This is a Unity shader that creates a beautiful water ripple effect with animate
 2. Assign the "Custom/WaterRipple" shader to the material (将"Custom/WaterRipple"着色器分配给材质)
 3. Apply the material to a plane or mesh (将材质应用到平面或网格上)
 4. Adjust the parameters to achieve desired effect (调整参数以获得所需效果)
+
+### Quick Start with Prefab / 使用预制体快速开始
+
+The easiest way to get started:
+1. Drag `WaterRipplePlane.prefab` from Assets/Materials into your scene
+2. Press Play to see the animated water ripple effect
+3. Select the prefab and adjust material properties in the Inspector
+
+最简单的开始方式：
+1. 将 Assets/Materials 中的 `WaterRipplePlane.prefab` 拖入场景
+2. 按下播放按钮查看动画水波纹效果
+3. 选择预制体并在检视面板中调整材质属性
 
 ### Using the Example Material / 使用示例材质
 
