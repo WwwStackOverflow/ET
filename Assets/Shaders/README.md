@@ -30,8 +30,12 @@ This is a Unity shader that creates a beautiful water ripple effect with animate
 | **Ripple Frequency** | Float (0-20) | Frequency/density of ripples | 波纹的频率/密度 |
 | **Ripple Amplitude** | Float (0-0.5) | Height/intensity of ripples | 波纹的高度/强度 |
 | **Wave Speed** | Float (0-5) | Speed of wave animation | 波浪动画速度 |
+| **Wave Frequency** | Float (0-10) | Frequency/density of waves | 波浪的频率/密度 |
 | **Wave Amplitude** | Float (0-0.2) | Height of waves | 波浪高度 |
 | **Transparency** | Float (0-1) | Overall transparency of the effect | 效果的整体透明度 |
+| **Ripple Detail Scale** | Float (1-20) | Scale of detail ripples in fragment shader | 片段着色器中细节波纹的缩放 |
+| **Ripple Detail Speed** | Float (1-10) | Speed multiplier for detail ripples | 细节波纹的速度倍增器 |
+| **Ripple Intensity** | Float (0-1) | Intensity of ripple pattern on surface | 表面波纹图案的强度 |
 
 ## Usage / 使用方法
 

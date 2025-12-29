@@ -8,8 +8,12 @@ Shader "Custom/WaterRipple"
         _RippleFrequency ("Ripple Frequency", Range(0, 20)) = 5.0
         _RippleAmplitude ("Ripple Amplitude", Range(0, 0.5)) = 0.1
         _WaveSpeed ("Wave Speed", Range(0, 5)) = 1.0
+        _WaveFrequency ("Wave Frequency", Range(0, 10)) = 3.0
         _WaveAmplitude ("Wave Amplitude", Range(0, 0.2)) = 0.05
         _Transparency ("Transparency", Range(0, 1)) = 0.8
+        _RippleDetailScale ("Ripple Detail Scale", Range(1, 20)) = 10.0
+        _RippleDetailSpeed ("Ripple Detail Speed", Range(1, 10)) = 3.0
+        _RippleIntensity ("Ripple Intensity", Range(0, 1)) = 0.2
     }
     
     SubShader
@@ -48,8 +52,12 @@ Shader "Custom/WaterRipple"
             float _RippleFrequency;
             float _RippleAmplitude;
             float _WaveSpeed;
+            float _WaveFrequency;
             float _WaveAmplitude;
             float _Transparency;
+            float _RippleDetailScale;
+            float _RippleDetailSpeed;
+            float _RippleIntensity;
             
             v2f vert (appdata v)
             {
@@ -60,8 +68,8 @@ Shader "Custom/WaterRipple"
                 float dist = length(worldPos.xz);
                 float ripple = sin(dist * _RippleFrequency - _Time.y * _RippleSpeed) * _RippleAmplitude;
                 
-                // Add wave effect
-                float wave = sin(v.vertex.x * 3.0 + _Time.y * _WaveSpeed) * _WaveAmplitude;
+                // Add wave effect with configurable frequency
+                float wave = sin(v.vertex.x * _WaveFrequency + _Time.y * _WaveSpeed) * _WaveAmplitude;
                 
                 // Apply displacement to vertex
                 v.vertex.y += ripple + wave;
@@ -81,11 +89,11 @@ Shader "Custom/WaterRipple"
                 // Create animated ripple pattern in fragment shader for more detail
                 float2 center = float2(0.5, 0.5);
                 float dist = distance(i.uv, center);
-                float ripple = sin(dist * _RippleFrequency * 10.0 - _Time.y * _RippleSpeed * 3.0) * 0.5 + 0.5;
+                float ripple = sin(dist * _RippleFrequency * _RippleDetailScale - _Time.y * _RippleSpeed * _RippleDetailSpeed) * 0.5 + 0.5;
                 
                 // Mix with water color
                 fixed4 finalColor = texColor * _Color;
-                finalColor.rgb += ripple * 0.2;
+                finalColor.rgb += ripple * _RippleIntensity;
                 
                 // Apply transparency
                 finalColor.a = _Color.a * _Transparency;

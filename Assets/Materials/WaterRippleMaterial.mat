@@ -29,10 +29,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _RippleAmplitude: 0.1
+    - _RippleDetailScale: 10
+    - _RippleDetailSpeed: 3
     - _RippleFrequency: 5
+    - _RippleIntensity: 0.2
     - _RippleSpeed: 2
     - _Transparency: 0.8
     - _WaveAmplitude: 0.05
+    - _WaveFrequency: 3
     - _WaveSpeed: 1
     m_Colors:
     - _Color: {r: 0.2, g: 0.5, b: 0.8, a: 0.8}
